@@ -1,0 +1,17 @@
+{% extends 'homepageapp/base.html' %}
+
+{% block content %}
+
+    <form method="POST">{% csrf_token %}
+        <p><input type="text" name="title" value="{{ notice.title }}"></p>
+        <textarea name="content" rows="5" cols="50">{{ notice.content }}</textarea>
+
+        <p><input type="submit" value="Update" class="btn btn-info"></p>
+        <a href="{% url 'noticeboardapp:noticeboard-view' %}"><button type="button" class="btn btn-info">Back</button></a>
+
+    </form>
+
+
+{% endblock %}
+
+

@@ -1,0 +1,10 @@
+{% extends 'homepageapp/base.html' %}
+
+{% block content %}
+
+    <h4 style="color:red;">No permission...</h4>
+    <h4>Only the administrator can delete all notices.</h4>
+    <a href="{% url 'noticeboardapp:noticeboard-view' %}"><button type="button" class="btn btn-info">Back</button></a>
+
+
+{% endblock %}

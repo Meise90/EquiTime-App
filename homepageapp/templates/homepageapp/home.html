@@ -1,0 +1,15 @@
+{% extends 'homepageapp/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+    <a href="{% url 'scheduleapp:schedule-full-view' %}"><button type="button" class="btn btn-info btn-lg btn-block">Schedule</button>
+    <br>
+    <a href="{% url 'noticeboardapp:noticeboard-view' %}"><button type="button" class="btn btn-info btn-lg btn-block">Noticeboard</button>
+    <br>
+    <a href="{% url 'homepageapp:home-view' %}"><button type="button" class="btn btn-info btn-lg btn-block">Reminder</button>
+
+
+
+{% endblock %}

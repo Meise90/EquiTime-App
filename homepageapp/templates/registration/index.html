@@ -1,0 +1,21 @@
+{% extends 'homepageapp/base.html' %}
+
+{% block content %}
+
+    {% for message in messages %}
+    {% csrf_token %}
+        <strong>Message: </strong> {{ message }}
+    {% endfor %}
+    <br>
+    <br>
+    {% if user.is_authenticated %}
+        <h3>Hello {{ fname }}!</h3>
+        <h4>You're successfully logged in!</h4>
+        <a href="{% url 'homepageapp:logout-view' %}"><button type="button" class="btn btn-primary">Log out</button></a>
+
+        {% else %}
+        <p><a href="{% url 'homepageapp:register-view' %}"><button type="button" class="btn btn-primary">Sign up</button></a></p>
+        <p><a href="{% url 'homepageapp:login-view' %}"><button type="button" class="btn btn-primary">Log in</button></a></p>
+    {% endif %}
+
+{% endblock %}
