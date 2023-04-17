@@ -1,0 +1,9 @@
+{% autoescape off %}
+
+Welcome again to EquiTime App!
+
+{{ username }}, please confirm your email by clicking on the following link.
+Confirmation link: http://{{ domain }}{% url 'homepageapp:activate' uidb64=uid token=token %}
+
+{% endautoescape %}
+

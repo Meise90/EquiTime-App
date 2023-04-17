@@ -1,0 +1,14 @@
+{% extends 'homepageapp/base.html' %}
+
+{% block content %}
+
+    <h3>Do you really want to clear the schedule?</h3>
+    <h4 style="color:red;">It cannot be undone...</h4>
+
+    <form method="post">{% csrf_token %}
+    <p><input type="submit" value="Confirm" class="btn btn-info"></p>
+    </form>
+    <a href="{% url 'scheduleapp:schedule-full-view' %}"><button type="button" class="btn btn-info">Back</button></a>
+
+
+{% endblock %}

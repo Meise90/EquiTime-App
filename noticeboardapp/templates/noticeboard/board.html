@@ -1,0 +1,65 @@
+
+{% load static %}
+{% load tz %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>EquiTime Noticeboard</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'style2.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <p class="navbar-text">You are logged in as: {{ user }}</p>
+    <a href="{% url 'homepageapp:home-view' %}"><button type="button" style="margin-top:7px;" class="btn btn-primary">Home</button></a>
+    <a href="{% url 'homepageapp:logout-view' %}"><button type="button" style="margin-right:10px; margin-top:7px;" class="btn btn-primary pull-right">Log out</button></a>
+    <a href="{% url 'scheduleapp:schedule-full-view' %}"><button type="button" style="margin-top:7px;" class="btn btn-primary">Schedule</button></a>
+    <a href="{% url 'noticeboardapp:noticeboard-view' %}"><button type="button" style="margin-top:7px;" class="btn btn-primary">Refresh</button></a>
+
+    </nav>
+
+    <div class="container-fluid page-header">
+        <div class="container">
+        <br>
+        <br>
+<div style="background:#e6e6fa !important" class="jumbotron text-center">
+    <h1 style="color:dimgrey; font-family: Lucida Handwriting, cursive;">Noticeboard</h1>
+    <p style="font-size:250%; color:dimgrey;">{{ today }}</p>
+    <p style="font-size:200%; color:dimgrey;">{{ current_day }}<p>
+    </div>
+
+    <h3><a href="{% url 'noticeboardapp:add-notice-view' %}"><button>Add notice</button></a></h3>
+    <h3><a href="{% url 'noticeboardapp:delete-all-notices' %}"><button>Delete all notices</button></a></h3>
+
+
+        {% for notice in notices %}
+        <div style="background:#e6e6fa !important" class="jumbotron text-left">
+        <p><small>Added by: {{ notice.user }}</small></p>
+        <p><small>Added on: {{ notice.timestamp }}</small></p>
+        <p><i>{{ notice.title }}</i></p>
+        <br>
+        <p>{{ notice.content }}</p>
+        <br>
+            {% if user.username == notice.user or user.is_staff %}
+                <a href="{% url 'noticeboardapp:delete-notice-view' notice.title notice.id %}"><button type="submit">Delete</button></a>
+                <a href="{% url 'noticeboardapp:update-notice-view' notice.title notice.id %}"><button type="submit">Update</button></a>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+
+
+
+
+
+        </div>
+    </div>
+</body>

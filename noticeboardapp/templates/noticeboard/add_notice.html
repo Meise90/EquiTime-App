@@ -1,0 +1,49 @@
+
+{% load static %}
+{% load tz %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Schedule</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'style2.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse">
+    <p class="navbar-text">You are logged in as: {{ user }}</p>
+    </nav>
+
+    <div class="container-fluid page-header">
+        <div class="container">
+
+<div style="background:#e6e6fa !important" class="jumbotron text-center">
+    <h1 style="color:dimgrey; font-family: Lucida Handwriting, cursive;">Noticeboard</h1>
+    <p style="font-size:250%; color:dimgrey;">{{ today }}</p>
+    <p style="font-size:200%; color:dimgrey;">{{ current_day }}<p>
+    </div>
+            <form method="POST">{% csrf_token %}
+    <p>Title:</p>
+    <input type="text" name="title" placeholder="Add new notice title">
+    <br>
+    <br>
+
+    <p>Notice:</p>
+    <textarea name="notice" placeholder="Add new notice" rows="5" cols="50"></textarea>
+    <p><a href="{% url 'noticeboardapp:noticeboard-view' %}"><button type="submit" class="btn btn-info">Submit</button></a></p>
+    <a href="{% url 'noticeboardapp:noticeboard-view' %}"><button type="button" class="btn btn-info">Back</button></a>
+
+</form>
+
+        </div>
+    </div>
+
+
+</body>

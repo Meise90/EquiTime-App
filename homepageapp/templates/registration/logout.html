@@ -1,0 +1,12 @@
+{% extends 'homepageapp/base.html' %}
+
+
+{% block content %}
+
+
+    {% for message in messages %}
+    <strong>Message: </strong> {{ message }}
+    {% endfor %}
+
+
+{% endblock %}

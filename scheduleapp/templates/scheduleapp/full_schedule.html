@@ -1,0 +1,107 @@
+{% load static %}
+{% load tz %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>EquiTime Schedule</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'style2.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <p class="navbar-text">You are logged in as: {{ user }}</p>
+    <a href="{% url 'homepageapp:home-view' %}"><button type="button" style="margin-top:7px;" class="btn btn-primary">Home</button></a>
+    <a href="{% url 'homepageapp:logout-view' %}"><button type="button" style="margin-right:10px; margin-top:7px;" class="btn btn-primary pull-right">Log out</button></a>
+    <a href="{% url 'noticeboardapp:noticeboard-view' %}"><button type="button" style="margin-top:7px;" class="btn btn-primary">Noticeboard</button></a>
+    <a href="{% url 'scheduleapp:schedule-full-view' %}"><button type="button" style="margin-top:7px;" class="btn btn-primary">Refresh</button></a>
+
+    </nav>
+
+    <div class="container-fluid page-header">
+        <div class="container">
+
+<div style="background:#e6e6fa !important" class="jumbotron text-center">
+    <h1 style="color:dimgrey; font-family: Lucida Handwriting, cursive;">Schedule for current week</h1>
+    <p style="font-size:250%; color:dimgrey;">{{ today }}</p>
+    <p style="font-size:200%; color:dimgrey;">{{ current_day }}<p>
+    </div>
+
+
+
+    <div class="container">
+    <div class="row seven-cols">
+    <div class="col-md-1">
+      <h3><a href="{% url 'scheduleapp:monday-view' %}"><button class="btn btn-primary btn-block">Monday</button></a></h3>
+        <h5><a href="{% url 'scheduleapp:monday-view' %}"><button class="btn btn-success btn-block">Add activity</button></a></h5>
+      {% for activity in monday_activities %}
+            <p><a href="{% url 'scheduleapp:activity-detail-view' activity.id %}">{{ activity.content }}</a></p>
+    {% endfor %}
+    </div>
+    <div class="col-md-1">
+      <h3><a href="{% url 'scheduleapp:tuesday-view' %}"><button class="btn btn-primary btn-block">Tuesday</button></a></h3>
+        <h5><a href="{% url 'scheduleapp:tuesday-view' %}"><button class="btn btn-success btn-block">Add activity</button></a></h5>
+      {% for activity in tuesday_activities %}
+            <p><a href="{% url 'scheduleapp:activity-detail-view' activity.id %}">{{ activity.content }}</a></p>
+    {% endfor %}
+    </div>
+    <div class="col-md-1">
+      <h3><a href="{% url 'scheduleapp:wednesday-view' %}"><button class="btn btn-primary btn-block">Wednesday</button></a></h3>
+        <h4><a href="{% url 'scheduleapp:wednesday-view' %}"><button class="btn btn-success btn-block">Add activity</button></a></h4>
+      {% for activity in weds_activities %}
+            <p><a href="{% url 'scheduleapp:activity-detail-view' activity.id %}">{{ activity.content }}</a></p>
+    {% endfor %}
+    </div>
+        <div class="col-md-1">
+      <h3><a href="{% url 'scheduleapp:thursday-view' %}"><button class="btn btn-primary btn-block">Thursday</button></a></h3>
+        <h4><a href="{% url 'scheduleapp:thursday-view' %}"><button class="btn btn-success btn-block">Add activity</button></a></h4>
+      {% for activity in thursday_activities %}
+            <p><a href="{% url 'scheduleapp:activity-detail-view' activity.id %}">{{ activity.content }}</a></p>
+    {% endfor %}
+    </div>
+        <div class="col-md-1">
+      <h3><a href="{% url 'scheduleapp:friday-view' %}"><button class="btn btn-primary btn-block">Friday</button></a></h3>
+        <h4><a href="{% url 'scheduleapp:friday-view' %}"><button class="btn btn-success btn-block">Add activity</button></a></h4>
+      {% for activity in friday_activities %}
+            <p><a href="{% url 'scheduleapp:activity-detail-view' activity.id %}">{{ activity.content }}</a></p>
+    {% endfor %}
+    </div>
+        <div class="col-md-1">
+      <h3><a href="{% url 'scheduleapp:saturday-view' %}"><button class="btn btn-primary btn-block">Saturday</button></a></h3>
+        <h4><a href="{% url 'scheduleapp:saturday-view' %}"><button class="btn btn-success btn-block">Add activity</button></a></h4>
+      {% for activity in saturday_activities %}
+            <p><a href="{% url 'scheduleapp:activity-detail-view' activity.id %}">{{ activity.content }}</a></p>
+    {% endfor %}
+    </div>
+        <div class="col-md-1">
+      <h3><a href="{% url 'scheduleapp:sunday-view' %}"><button class="btn btn-primary btn-block">Sunday</button></a></h3>
+        <h4><a href="{% url 'scheduleapp:sunday-view' %}"><button class="btn btn-success btn-block">Add activity</button></a></h4>
+      {% for activity in sunday_activities %}
+            <p><a href="{% url 'scheduleapp:activity-detail-view' activity.id %}">{{ activity.content }}</a></p>
+    {% endfor %}
+    </div>
+    </div>
+
+    <br>
+        <br>
+
+    <a href="{% url 'scheduleapp:delete-all-activities' %}"><button type="button" class="btn btn-info">Clear schedule</button></a>
+        </div>
+
+        <br>
+        <br>
+        </div>
+    </div>
+
+
+</body>
+</html>
