@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'homepageapp.apps.HomepageappConfig',
     'scheduleapp.apps.ScheduleappConfig',
     'noticeboardapp.apps.NoticeboardappConfig',
+    'django_celery_beat',
+
 ]
 
 MIDDLEWARE = [
@@ -139,6 +141,19 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 LOGIN_URL = '/signin/?next=/signin/'
+
+
+# CELERY SETTINGS
+
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+ACCEPT_CONTENT = ['application/json']
+RESULT_SERIALIZER = 'json'
+TASK_SERIALIZER = 'json'
+TIMEZONE = 'Europe/Warsaw'
+RESULT_BACKEND = 'django-db'
+
+
+# CELERY BEAT
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 

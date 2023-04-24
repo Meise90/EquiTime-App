@@ -370,7 +370,6 @@ def delete_all_activities(request):
         )
 
 
-
 @login_required
 def current_date_view(request):
 
