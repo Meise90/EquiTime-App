@@ -21,4 +21,5 @@ urlpatterns = [
     path('', include('homepageapp.urls')),
     path('', include('scheduleapp.urls')),
     path('', include('noticeboardapp.urls')),
+    path('', include('reminderapp.urls')),
 ]

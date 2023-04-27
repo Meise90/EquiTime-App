@@ -149,13 +149,13 @@ LOGIN_URL = '/signin/?next=/signin/'
 
 # CELERY SETTINGS
 
-CELERY_broker_url = 'redis://127.0.0.1:6379'
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
 ACCEPT_CONTENT = ['application/json']
 RESULT_SERIALIZER = 'json'
 TASK_SERIALIZER = 'json'
 TIMEZONE = 'Europe/Warsaw'
 RESULT_BACKEND = 'django-db'
-broker_pool_limit = 0
+BROKER_POOL_LIMIT = 0
 
 
 # CELERY BEAT

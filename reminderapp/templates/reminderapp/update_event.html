@@ -1,0 +1,50 @@
+{% extends 'homepageapp/base_2.html' %}
+{% load static %}
+{% load tz %}
+
+{% block content %}
+
+    <div class="container-fluid page-header">
+        <div class="container">
+
+<div style="background:#e6e6fa !important" class="jumbotron text-center">
+    <h1 style="color:dimgrey; font-family: Lucida Handwriting, cursive;">Reminder on your events</h1>
+    <p style="font-size:250%; color:dimgrey;">{{ today }}</p>
+    <p style="font-size:200%; color:dimgrey;">{{ current_day }}<p>
+    </div>
+
+ <h3>Update this event: {{ event.id }}</h3>
+    <form method="POST">{% csrf_token %}
+        <h3>{{ name }}</h3>
+        <br>
+        <p>Event date: {{ planned }}</p>
+        <input type="date" name="date">
+        <br>
+        <br>
+        <p>Event time: {{ planned_at_time }}</p>
+        <input type="time" name="event_time">
+        <br>
+        <br>
+        <p>Remind me on: {{ remind_on }}</p>
+        <input type="date" name="reminder_date">
+        <br>
+        <br>
+        <p>Remind me at this time: {{ remind_at }}</p>
+        <input type="time" name="reminder_time">
+
+        <br>
+        <br>
+
+        <p><input type="submit" value="Update" class="btn btn-info"></p>
+        </form>
+        <a href="{% url 'reminderapp:all-events-view' %}"><button class="btn btn-info">Back</button></a>
+
+
+        {{ hour }}
+        <br>
+        {{ minute }}
+
+     </div>
+    </div>
+
+{% endblock %}

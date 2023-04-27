@@ -14,6 +14,10 @@ app.conf.update(timezone='Europe/Warsaw')
 
 app.config_from_object(settings, namespace='CELERY')
 
+app.conf.broker_url = 'redis://localhost:6379/0'
+
+app.conf.broker_transport_options = {'visibility_timeout': 3600}
+
 # Celery Beat Settings
 
 app.conf.beat_schedule = {

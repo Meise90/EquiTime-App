@@ -16,13 +16,12 @@
 </head>
 <body>
 
-
-
     <nav class="navbar navbar-inverse navbar-fixed-top">
     <p class="navbar-text">You are logged in as: {{ user }}</p>
     <a href="{% url 'homepageapp:home-view' %}"><button type="button" style="margin-top:7px;" class="btn btn-primary">Home</button></a>
     <a href="{% url 'homepageapp:logout-view' %}"><button type="button" style="margin-right:10px; margin-top:7px;" class="btn btn-primary pull-right">Log out</button></a>
     <a href="{% url 'noticeboardapp:noticeboard-view' %}"><button type="button" style="margin-top:7px;" class="btn btn-primary">Noticeboard</button></a>
+    <a href="{% url 'reminderapp:all-events-view' %}"><button type="button" style="margin-top:7px;" class="btn btn-primary">Reminder</button></a>
     <a href="{% url 'scheduleapp:schedule-full-view' %}"><button type="button" style="margin-top:7px;" class="btn btn-primary">Refresh</button></a>
 
     </nav>

@@ -30,24 +30,23 @@
         <a href="{% url 'noticeboardapp:noticeboard-view' %}"><button type="button" style="margin-top:7px;" class="btn btn-primary">Noticeboard</button></a>
         <a href="{% url 'reminderapp:all-events-view' %}"><button type="button" style="margin-top:7px;" class="btn btn-primary">Reminder</button></a>
 
-
     </nav>
-
-    <div class="container-fluid page-header">
-        <div class="container">
-
-    <div style="background:#e6e6fa !important" class="jumbotron text-center">
-    <h1 style="color:dimgrey; font-family: Lucida Handwriting, cursive;">Welcome to EquiTime App</h1>
-    <p style="font-size:250%; color:dimgrey;">{{ today }}</p>
-    <p style="font-size:200%; color:dimgrey;">{{ current_day }}<p>
-    </div>
 
     {% block content %}
 
-    {% endblock %}
-            </div>
 
-</div>
+    <div class="container-fluid page-header">
+            <div class="container">
+
+        <div style="background:#e6e6fa !important" class="jumbotron text-center">
+        <h1 style="color:dimgrey; font-family: Lucida Handwriting, cursive;">Welcome to EquiTime App</h1>
+        <p style="font-size:250%; color:dimgrey;">{{ today }}</p>
+        <p style="font-size:200%; color:dimgrey;">{{ current_day }}<p>
+        </div>
+
+        </div>
+    </div>
+    {% endblock %}
 
 <img src="{% static 'img/lila_horse.jpg' %}" alt="My image">
 

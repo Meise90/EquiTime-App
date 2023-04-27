@@ -1,0 +1,35 @@
+{% extends 'homepageapp/base_2.html' %}
+{% load static %}
+{% load tz %}
+
+{% block content %}
+
+    <div class="container-fluid page-header">
+        <div class="container">
+
+<div style="background:#e6e6fa !important" class="jumbotron text-center">
+    <h1 style="color:dimgrey; font-family: Lucida Handwriting, cursive;">Reminder on your events</h1>
+    <p style="font-size:250%; color:dimgrey;">{{ today }}</p>
+    <p style="font-size:200%; color:dimgrey;">{{ current_day }}<p>
+    </div>
+
+    <p><a href="{% url 'reminderapp:add-event-view' %}"><button class="btn btn-success">Add event</button></a></p>
+
+        <h3 style="color:dimgrey;">Your planned events:</h3>
+
+        {% for event in events %}
+        {% if user.username == event.user or user.is_staff %}
+
+        <div style="background:#e6e6fa !important" class="jumbotron">
+                <h3><a href="{% url 'reminderapp:event-detail-view' event.id %}">{{ event.event_name }}</a></h3>
+                <p><h4 style="color:dimgrey;">Planned for: {{ event.event_date }}</h4></p>
+                <p><h5 style="color:dimgrey;">Scheduled at: {{ event.event_time }}</h5></p>
+                <a href="{% url 'reminderapp:event-update-view' event.id %}"><button>Update</button></a>
+                <a href="{% url 'reminderapp:event-delete-view' event.id %}"><button>Delete</button></a>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+
+
+{% endblock %}
