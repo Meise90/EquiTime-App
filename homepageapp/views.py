@@ -9,18 +9,19 @@ from django.contrib import messages
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
-from . tokens import generate_token
+from .tokens import generate_token
 from django.core.mail import EmailMessage
 from EquiTimeProject import settings
 from datetime import date, datetime
+from .models import PhoneModel
 
 
 # Create your views here.
 
 def home_view(request):
-
     today = date.today()
     current_day = today.strftime("%A")
+
 
     return render(
         request,
@@ -31,8 +32,8 @@ def home_view(request):
         }
     )
 
-def register_view(request):
 
+def register_view(request):
     if request.method == "POST":
         username = request.POST.get('username')
         fname = request.POST.get('fname')
@@ -40,6 +41,10 @@ def register_view(request):
         email = request.POST.get('email')
         pass1 = request.POST.get('pass1')
         pass2 = request.POST.get('pass2')
+
+        phone = request.POST.get('tel')
+        phone_number = PhoneModel(phone_number=phone)
+        phone_number.save()
 
 
         if User.objects.filter(username=username):
@@ -68,6 +73,7 @@ def register_view(request):
         my_user.is_active = False
         my_user.save()
 
+
         messages.success(request, "Your account has been successfully created. "
                                   "We have sent you welcome and address confirmation emails!")
 
@@ -75,7 +81,7 @@ def register_view(request):
 
         subject = "Welcome to EquiTime Application!"
         message = 'Hello ' + my_user.first_name + "! \n" + "Thank you for visiting our website. \n" \
-                                                            "Your login: " + my_user.username
+                                                           "Your login: " + my_user.username
         from_email = settings.EMAIL_HOST_USER
         to_list = [my_user.email]
         # fail_silently=True / if our email fails to send it still won't crash our app
@@ -104,11 +110,11 @@ def register_view(request):
         return redirect('homepageapp:index-view')
 
     if request.method == "GET":
+        return render(
+            request,
+            'registration/register.html',
+        )
 
-            return render(
-                request,
-                'registration/register.html',
-            )
 
 def activate(request, uidb64, token):
     try:
@@ -134,7 +140,6 @@ def activate(request, uidb64, token):
 
 
 def login_view(request):
-
     if request.method == "POST":
         username = request.POST['username']
         pass1 = request.POST['pass1']
@@ -157,15 +162,14 @@ def login_view(request):
 
             return redirect('homepageapp:index-view')
 
-
     if request.method == "GET":
         return render(
             request,
             'registration/signin.html'
         )
 
-def index_view(request):
 
+def index_view(request):
     return render(
         request,
         'registration/index.html',
@@ -173,7 +177,6 @@ def index_view(request):
 
 
 def logout_view(request):
-
     logout(request)
     messages.success(request, "You are logged out!")
     # return redirect('homepageapp:home-view')
@@ -182,5 +185,3 @@ def logout_view(request):
         request,
         'registration/logout.html',
     )
-
-

@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'reminderapp.apps.ReminderappConfig',
 
     'django_celery_beat',
-
+    'django_twilio',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [

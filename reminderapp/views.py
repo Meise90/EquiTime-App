@@ -107,6 +107,7 @@ def event_update_view(request, event_id):
         new_time = request.POST.get('event_time')
         new_reminder_date = request.POST.get('reminder_date')
         new_reminder_time = request.POST.get('reminder_time')
+        check = request.POST.get('check')
 
 
         if new_event:
@@ -145,6 +146,12 @@ def event_update_view(request, event_id):
         task = PeriodicTask.objects.create(crontab=schedule, name=f"schedule_reminder_mail_task_{dynamic_task_id}",
                                            task='reminderapp.tasks.send_reminder_mail_func', one_off=True,
                                            args=json.dumps(([event_id, user_id])))
+
+        if check:
+            task_two = PeriodicTask.objects.create(crontab=schedule,
+                                                   name=f"schedule_reminder_sms_task_{dynamic_task_id}",
+                                                   task='reminderapp.tasks.send_reminder_sms_func', one_off=True,
+                                                   args=json.dumps(([event_id, user_id])))
 
         name = event.event_name
         planned = event.event_date
