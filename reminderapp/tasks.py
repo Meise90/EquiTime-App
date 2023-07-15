@@ -2,16 +2,16 @@ from celery import shared_task
 from django.core.mail import send_mail
 from EquiTimeProject import settings
 from django.contrib.auth.models import User
-from reminderapp.models import Event
+from .models import Event
 from twilio.rest import Client
-import os
+from homepageapp.models import PhoneModel
 
 
 @shared_task(bind=True)
 def send_reminder_mail_func(self, event_id, user_id):
 
-    event = Event.objects.get(id=event_id)
     user = User.objects.get(id=user_id)
+    event = Event.objects.get(id=event_id)
 
     mail_subject = f"Hi, this is your reminder on <{event.event_name}>"
     message = f"Hello {user},\n\n" \
@@ -34,15 +34,18 @@ def send_reminder_sms_func(self, event_id, user_id):
 
     event = Event.objects.get(id=event_id)
     user = User.objects.get(id=user_id)
+    phone_number = PhoneModel.objects.get(id=user_id)
 
-    account_sid = os.environ.get("TWILIO_ACCOUNT_SID")
-    auth_token = os.environ.get("TWILIO_AUTH_TOKEN")
+    account_sid = settings.TWILIO_ACCOUNT_SID
+    auth_token = settings.TWILIO_AUTH_TOKEN
     client = Client(account_sid, auth_token)
 
     message = client.messages.create(
         body=f"Hi {user}, you have '{event.event_name}' on {event.event_date} at {event.event_time}!",
-        from_=os.environ.get("TWILIO_HOST_NUMBER"),
-        to=os.environ.get("POLISH_TEST_NUMBER"),
+        from_=settings.TWILIO_HOST_NUMBER,
+        # Below should be 'phone_number' value taken from the db, but because I'm using free Twilio acc I cannot
+        # send messages to any number, only registered ones. That's why it's hard-coded.
+        to=settings.POLISH_TEST_NUMBER,
 
     )
 

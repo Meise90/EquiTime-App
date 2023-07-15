@@ -42,11 +42,6 @@ def register_view(request):
         pass1 = request.POST.get('pass1')
         pass2 = request.POST.get('pass2')
 
-        phone = request.POST.get('tel')
-        phone_number = PhoneModel(phone_number=phone)
-        phone_number.save()
-
-
         if User.objects.filter(username=username):
             messages.error(request, 'Username already exists. Please try some other username.')
             return redirect('homepageapp:register-view')
@@ -73,6 +68,9 @@ def register_view(request):
         my_user.is_active = False
         my_user.save()
 
+        phone_number = request.POST.get('phone_number')
+        phone_number = PhoneModel(phone_number=phone_number, user=my_user)
+        phone_number.save()
 
         messages.success(request, "Your account has been successfully created. "
                                   "We have sent you welcome and address confirmation emails!")
