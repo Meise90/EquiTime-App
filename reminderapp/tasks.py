@@ -34,7 +34,7 @@ def send_reminder_sms_func(self, event_id, user_id):
 
     event = Event.objects.get(id=event_id)
     user = User.objects.get(id=user_id)
-    phone_number = PhoneModel.objects.get(id=user_id)
+    phone_number = PhoneModel.objects.get(user=user)
 
     account_sid = settings.TWILIO_ACCOUNT_SID
     auth_token = settings.TWILIO_AUTH_TOKEN

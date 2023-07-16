@@ -1,20 +1,18 @@
-from django.contrib.auth.decorators import login_required
+from datetime import date
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import EmailMessage
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.contrib.auth.models import User
-from django.contrib import messages
 from django.template.loader import render_to_string
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
-from .tokens import generate_token
-from django.core.mail import EmailMessage
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from EquiTimeProject import settings
-from datetime import date, datetime
 from .models import PhoneModel
-
+from .tokens import generate_token
+import phonenumbers
 
 # Create your views here.
 
@@ -42,7 +40,7 @@ def register_view(request):
         pass1 = request.POST.get('pass1')
         pass2 = request.POST.get('pass2')
 
-        if User.objects.filter(username=username):
+        if User.objects.filter(username=username) and User.is_active:
             messages.error(request, 'Username already exists. Please try some other username.')
             return redirect('homepageapp:register-view')
 
@@ -69,8 +67,13 @@ def register_view(request):
         my_user.save()
 
         phone_number = request.POST.get('phone_number')
+
         phone_number = PhoneModel(phone_number=phone_number, user=my_user)
-        phone_number.save()
+        if phonenumbers.is_valid_number(phone_number.phone_number):
+            phone_number.save()
+        else:
+            messages.error(request, "This is not a valid phone number.")
+            return redirect('homepageapp:register-view')
 
         messages.success(request, "Your account has been successfully created. "
                                   "We have sent you welcome and address confirmation emails!")
