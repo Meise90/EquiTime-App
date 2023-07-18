@@ -72,7 +72,9 @@ def register_view(request):
         if phonenumbers.is_valid_number(phone_number.phone_number):
             phone_number.save()
         else:
-            messages.error(request, "This is not a valid phone number.")
+            messages.error(request, "This is not a valid phone number. Please give your number with country code "
+                                    "and without any spaces, e.g. +48111222333")
+            my_user.delete()
             return redirect('homepageapp:register-view')
 
         messages.success(request, "Your account has been successfully created. "
