@@ -4,6 +4,7 @@ import os
 from celery import Celery
 from django.conf import settings
 from celery.schedules import crontab
+from datetime import timedelta
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'EquiTimeProject.settings')
 
@@ -24,7 +25,11 @@ app.conf.beat_schedule = {
     'clear-schedule-every-week': {
         'task': 'scheduleapp.tasks.delete_all_func',
         'schedule': crontab(hour=2, minute=0, day_of_week=1),
-    }
+    },
+    'delete-inactive-users': {
+        'task': 'homepageapp.tasks.delete_inactive_users_func',
+        'schedule': timedelta(hours=2)
+    },
 
 }
 
