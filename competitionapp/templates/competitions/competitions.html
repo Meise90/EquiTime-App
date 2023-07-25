@@ -1,0 +1,18 @@
+{% extends 'homepageapp/base.html' %}
+
+
+{% block content %}
+
+<h3 style="color:dimgrey;">100 upcoming competitions in Poland:</h3>
+<hr>
+
+
+<ol>
+{% for detail, link in all %}
+<li><p>{{ detail }}</p>
+  <p><a href="https://zawodykonne.com/{{ link }}">https://zawodykonne.com/{{ link }}</a></p></li>
+{% endfor %}
+  </ol>
+
+
+{% endblock %}

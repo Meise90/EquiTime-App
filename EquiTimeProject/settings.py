@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'scheduleapp.apps.ScheduleappConfig',
     'noticeboardapp.apps.NoticeboardappConfig',
     'reminderapp.apps.ReminderappConfig',
+    'competitionapp.apps.CompetitionappConfig',
 
     'django_celery_beat',
     'django_twilio',
