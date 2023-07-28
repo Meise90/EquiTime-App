@@ -18,11 +18,14 @@ cron-descriptor==1.2.35
 Django==4.1.7
 django-bootstrap-v5==1.0.11
 django-celery-beat==2.5.0
+django-phonenumber-field==7.1.0
 django-timezone-field==5.0
+django-twilio==0.14.3.2
 frozenlist==1.3.3
 idna==3.4
 kombu==5.2.4
 multidict==6.0.4
+phonenumbers==8.13.16
 prompt-toolkit==3.0.38
 PyJWT==2.7.0
 python-crontab==2.7.1

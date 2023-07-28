@@ -28,7 +28,7 @@ app.conf.beat_schedule = {
     },
     'delete-inactive-users': {
         'task': 'homepageapp.tasks.delete_inactive_users_func',
-        'schedule': timedelta(hours=2)
+        'schedule': timedelta(hours=1)
     },
 
 }
