@@ -16,7 +16,7 @@
 The application was created in Django and is used to manage an equestrian 
 center. It is divided into several minor applications that are designed to 
 improve the daily operations of the center and its users. Each application will be 
-descriebd below.
+described below.
 <hr>
 <strong>The whole project is under constant development</strong>
 </details>
@@ -52,7 +52,7 @@ A new user must sign up to see contents of other tabs and be able to use the fea
 After filling out the forms (validation of each data, unique username and email address) the user gets two 
 emails: a welcome email and email with one-time generated token to confirm his identity, 
 email address and finish the registration process. After that user gets logged in automatically and can start using the app. 
-In database he is marked as active user. If user doesn't activate his account in 24 hours by clicking the link he will 
+In the database he gets marked as an active user. If the user does not activate his account within 24 hours by clicking the link he will 
 be deleted from the database - Celery and Celery-beat are responsible for this task. Beat is checking the database 
 every single hour.
 </details>
@@ -68,7 +68,7 @@ used to enter planned activities with the horse (e.g. jumping, flat work, dressa
 Indoor arena capacity is limited, it helps to plan the trainings so that there won't be 
 20 horses inside at the same hour. The schedule is being cleared every week at 2 AM on Mondays - 
 Celery and Celery-beat are responsible for this task as well. 
-Schedule can be cleared at any time by the Admin.
+The schedule can be cleared anytime by the Admin.
 </details>
 
 ### 3. Noticeboard
