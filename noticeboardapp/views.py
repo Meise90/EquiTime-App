@@ -14,9 +14,16 @@ def add_notice_view(request):
 
     if request.method == "GET":
 
+        today = date.today()
+        current_day = today.strftime("%A")
+
         return render(
             request,
             'noticeboard/add_notice.html',
+            context={
+                'today': today,
+                'current_day': current_day,
+            }
         )
 
     if request.method == "POST":

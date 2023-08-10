@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from bs4 import BeautifulSoup
 import requests
+from datetime import date
 import re
 
 
@@ -8,6 +9,9 @@ import re
 def current_competitions_view(request):
 
     if request.method == "GET":
+
+        today = date.today()
+        current_day = today.strftime("%A")
 
         URL = "https://zawodykonne.com/zawody/aktualne"
         headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 '
@@ -49,5 +53,7 @@ def current_competitions_view(request):
                 "full_details_list": full_details_list,
                 "wanted_links": wanted_links,
                 "all": all,
+                "today": today,
+                "current_day": current_day,
             }
         )

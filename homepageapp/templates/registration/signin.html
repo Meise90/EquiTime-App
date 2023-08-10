@@ -17,7 +17,7 @@
 
     <form action="/signin/" method="post">
     {% csrf_token %}
-
+        {{ form.as_p }}
 
         <label for="">Username</label>
         <input type="text" id="username" name="username" placeholder="Enter your username" required>

@@ -7,5 +7,5 @@ class Notice(models.Model):
 
     title = models.CharField(max_length=50, default='Notice')
     user = models.CharField(max_length=50, default='Guest')
-    content = models.CharField(max_length=1000)
+    content = models.TextField(max_length=1000)
     timestamp = models.DateTimeField(auto_now_add=True)
