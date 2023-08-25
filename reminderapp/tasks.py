@@ -15,7 +15,7 @@ def send_reminder_mail_func(self, event_id, user_id):
 
     mail_subject = f"Hi, this is your reminder on <{event.event_name}>"
     message = f"Hello {user},\n\n" \
-              f"You have <{event.event_name}> on {event.event_date} at {event.event_time}!\n\n" \
+              f"You have {event.event_name} on {event.event_date} at {event.event_time}!\n\n" \
               f"Sent from your EquiTime App."
     to_email = user.email
     send_mail(

@@ -2,23 +2,16 @@
 
 {% block content %}
 
-<style>
-  h3 {
-  color: dimgrey;}
-</style>
 
 <div class="container-fluid page-header">
     <div class="container">
-        <br>
-        <br>
+
     <div style="background:#e6e6fa !important" class="jumbotron text-center">
     <h1 style="color:dimgrey; font-family: Lucida Handwriting, cursive;">100 upcoming competitions in Poland</h1>
     <p style="font-size:250%; color:dimgrey;">{{ today }}</p>
     <p style="font-size:200%; color:dimgrey;">{{ current_day }}<p>
     </div>
-
-<h3>100 upcoming competitions in Poland:</h3>
-<hr>
+        <hr>
 
 <ol>
 {% for detail, link in all %}
