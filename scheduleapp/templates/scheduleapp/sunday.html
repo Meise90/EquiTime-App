@@ -1,0 +1,22 @@
+{% extends 'homepageapp/base.html' %}
+
+{% block content %}
+
+    <h3>Sunday</h3>
+    <a href="{% url 'scheduleapp:schedule-full-view' %}"><button type="button" class="btn btn-info">Back</button></a>
+    <h4>Add activity:</h4>
+    {% if user.is_authenticated %}
+    <form method="post">{% csrf_token %}
+        <input type="text" name="sunday" placeholder="horse-activity-hour">
+        <input type="submit" value="Add" class="btn btn-info">
+    </form>
+    {% endif %}
+
+    <h4>All activities planned for Sunday:</h4>
+    <ol>
+    {% for activity in sunday_activities %}
+        <li>{{ activity.content }}, added by: {{activity.user }}</li>
+    {% endfor %}
+        </ol>
+
+{% endblock %}

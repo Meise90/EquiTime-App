@@ -1,0 +1,18 @@
+{% extends 'homepageapp/base.html' %}
+
+{% block content %}
+
+    <h3>Update this activity</h3>
+    <form method="POST">{% csrf_token %}
+        <input type="text" name="activity" value="{{ activity.content }}">
+
+        {% if user.username == activity.user or user.is_staff %}
+        <input type="submit" value="Update" class="btn btn-info">
+        {% else %}
+        <p>You can only update your activities!</p>
+        {% endif %}
+    </form>
+   <a href="{% url 'scheduleapp:schedule-full-view' %}"><button class="btn btn-info">Back</button></a>
+
+
+{% endblock %}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>Add new activity:</h3>
+
+    <form method="post">{% csrf_token %}
+        {% if user.is_authenticated %}
+        <input type="text" name="activity">
+        <input type="submit" value="Dodaj">
+        {% endif %}
+
+    </form>
+
+</body>
+</html>

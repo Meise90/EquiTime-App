@@ -1,0 +1,12 @@
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+}
+
+.navbar navbar-inverse > li{
+  margin-top: 7px;
+}
+
+

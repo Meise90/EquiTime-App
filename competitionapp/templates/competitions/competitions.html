@@ -1,0 +1,25 @@
+{% extends 'homepageapp/base_2.html' %}
+
+{% block content %}
+
+<div class="container-fluid page-header">
+    <div class="container">
+        <div style="background:#e6e6fa !important" class="jumbotron text-center">
+            <h1 style="color:dimgrey; font-family: Lucida Handwriting, cursive;">100 upcoming competitions in
+                Poland</h1>
+            <p style="font-size:250%; color:dimgrey;">{{ today }}</p>
+            <p style="font-size:200%; color:dimgrey;">{{ current_day }}
+            <p>
+        </div>
+        <hr>
+
+        <ol>
+            {% for detail, link in all %}
+            <li><p>{{ detail }}</p>
+                <p><a href="https://zawodykonne.com/{{ link }}">https://zawodykonne.com/{{ link }}</a></p></li>
+            {% endfor %}
+        </ol>
+    </div>
+</div>
+
+{% endblock %}

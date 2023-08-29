@@ -1,0 +1,42 @@
+{% extends 'homepageapp/base_2.html' %}
+
+{% load static %}
+{% load tz %}
+
+{% block content %}
+
+    <div class="container-fluid page-header">
+        <div class="container">
+
+<div style="background:#e6e6fa !important" class="jumbotron text-center">
+    <h1 style="color:dimgrey; font-family: Lucida Handwriting, cursive;">Noticeboard</h1>
+    <p style="font-size:250%; color:dimgrey;">{{ today }}</p>
+    <p style="font-size:200%; color:dimgrey;">{{ current_day }}<p>
+    </div>
+
+    <a href="{% url 'noticeboardapp:add-notice-view' %}"><button class="btn btn-success">Add notice</button>
+    <a href="{% url 'noticeboardapp:delete-all-notices' %}"><button class="btn btn-info">Delete all notices</button></a>
+
+        <h3 style="color:dimgrey;">All notices:</h3>
+
+
+        {% for notice in notices %}
+        <div style="background:#e6e6fa !important" class="jumbotron text-left">
+        <p><small>Added by: {{ notice.user }}</small></p>
+        <p><small>Added on: {{ notice.timestamp }}</small></p>
+        <p><i>{{ notice.title }}</i></p>
+        <br>
+        <p>{{ notice.content }}</p>
+        <br>
+            {% if user.username == notice.user or user.is_staff %}
+                <a href="{% url 'noticeboardapp:delete-notice-view' notice.title notice.id %}"><button type="submit">Delete</button></a>
+                <a href="{% url 'noticeboardapp:update-notice-view' notice.title notice.id %}"><button type="submit">Update</button></a>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% load static %}
+{% load tz %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>EquiTime</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <a href="{% url 'homepageapp:home-view' %}"><button type="button" style="margin-left:5px; margin-top:7px;" class="btn btn-primary">Home</button></a>
+        {% if user.is_authenticated %}
+        <p class="navbar-text">You are logged in as: {{ user }}</p>
+        <a href="{% url 'homepageapp:logout-view' %}"><button type="button" style="margin-right:10px; margin-top:7px;" class="btn btn-primary pull-right">Log out</button></a>
+        {% else %}
+        <a href="{% url 'homepageapp:login-view' %}"><button type="button" style="margin-top:7px;" class="btn btn-primary">Log in</button></a>
+        <a href="{% url 'homepageapp:register-view' %}"><button type="button" style="margin-top:7px;" class="btn btn-primary">Sign up</button></a>
+        {% endif %}
+        <a href="{% url 'scheduleapp:schedule-full-view' %}"><button type="button" style="margin-top:7px;" class="btn btn-primary">Schedule</button></a>
+        <a href="{% url 'noticeboardapp:noticeboard-view' %}"><button type="button" style="margin-top:7px;" class="btn btn-primary">Noticeboard</button></a>
+        <a href="{% url 'reminderapp:all-events-view' %}"><button type="button" style="margin-top:7px;" class="btn btn-primary">Reminder</button></a>
+        <a href="{% url 'competitionapp:current-competitions-view' %}"><button type="button" style="margin-top:7px;" class="btn btn-primary">Competitions</button></a>
+
+
+    </nav>
+
+    {% block content %}
+
+    <div class="container-fluid page-header">
+            <div class="container">
+
+        <div style="background:#e6e6fa !important" class="jumbotron text-center">
+        <h1 style="color:dimgrey; font-family: Lucida Handwriting, cursive;">Welcome to EquiTime App</h1>
+        <p style="font-size:250%; color:dimgrey;">{{ today }}</p>
+        <p style="font-size:200%; color:dimgrey;">{{ current_day }}<p>
+        </div>
+
+        </div>
+    </div>
+    {% endblock %}
+
+<img src="{% static 'img/lila_horse.jpg' %}" alt="My image">
+
+</body>
+</html>

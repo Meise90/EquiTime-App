@@ -1,0 +1,14 @@
+{% extends 'homepageapp/base.html' %}
+
+{% block content %}
+
+  <h3>Activity:</h3>
+      <p>{{ activity.content }}</p>
+      <p>Added by: {{ activity.user }}</p>
+        <br>
+        <a href="{% url 'scheduleapp:activity-update-view' activity.id %}"><button class="btn btn-info">Update</button></a>
+        <a href="{% url 'scheduleapp:activity-delete-view' activity.id %}"><button class="btn btn-info">Delete</button></a>
+        <a href="{% url 'scheduleapp:schedule-full-view' %}"><button class="btn btn-info">Back</button ></a>
+
+
+{% endblock %}

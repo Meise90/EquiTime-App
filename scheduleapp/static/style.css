@@ -1,0 +1,48 @@
+#bg {
+    background-color: #008B8B;
+    background-size: 1800px 900px;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-attachment: fixed;
+
+}
+
+#hd {
+    text-align: center;
+    color: #EEE8AA;
+    border: 5px solid #EEE8AA;
+    border-radius: 15px;
+    padding: 0;
+}
+
+body {
+    font-family: Monaco;
+    margin: 15;
+}
+
+
+button {
+  background-color: #B0E0E6;
+  border: 1px;
+  color: #008B8B;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+a:link {
+  background-color: #EEE8AA;
+  color: #008B8B;
+}
+
+a:hover {
+  background-color: mediumaquamarine;
+}
+
+
+.day {
+    display: inline-block;
+}
+
